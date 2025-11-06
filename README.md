@@ -1,11 +1,12 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/v3c0XywZ)
-# AI Hardware Project Template
+# AI Hardware Project - HLS-CNN-MNIST
 ECE 4332 / ECE 6332 — AI Hardware  
 Fall 2025
 
 ## 🧭 Overview
-This repository provides a structured template for your team project in the AI Hardware class.  
-Each team will **clone this template** to start their own project repository.
+This project builds a hardware accelerator for a convolutional neural network (CNN) on the PYNQ-Z2 platform. The accelerator is written in C++ and synthesized to RTL with High-Level Synthesis (HLS). It targets MNIST digit classification with 8-bit quantized inputs and weights to reduce memory bandwidth and improve throughput.
+
+The design exposes the CNN as a reusable IP core in the PL (FPGA fabric in the ZYNQ7020 SOC). The PS (ARM cores in the ZYNQ7020 SOC) run a PYNQ Python overlay that controls the IP via AXI4-Lite and moves data via AXI DMA (AXI4-Stream) between DRAM and the accelerator. A 28×28 grayscale image (int8) is streamed to the IP; the IP computes the forward propagation and streams out the predictions back to PS via AXI DMA.
 
 ## 🗂 Folder Structure
 - `docs/` – project proposal and documentation  
@@ -15,8 +16,7 @@ Each team will **clone this template** to start their own project repository.
 - `data/` – datasets or pointers to data used
 
 ## 🧑‍🤝‍🧑 Team Setup
-Each team should have **2–4 members (3 preferred)**.  
-List all team members in `docs/Project_Proposal.md`.
+- Junting Huo
 
 ## 📋 Required Deliverables
 1. **Project Proposal** — due Nov. 5, 2025, 11:59 PM  
